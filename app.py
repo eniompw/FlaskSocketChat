@@ -4,20 +4,12 @@ app = Flask(__name__)
 socketio = SocketIO(app)
 
 @app.route('/')
-def index():
-    return render_template('recieve.html')
-
-@app.route('/outbox')
-def outbox():
-    return render_template('outbox.html')
+def home():
+    return render_template('home.html')
 
 @app.route('/send')
 def send():
     return render_template('send.html')
-
-@socketio.on('connect')
-def default(auth):
-    emit('response', 'Welcome')
 
 @socketio.on('send')
 def send_msg(data):
