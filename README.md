@@ -1,4 +1,4 @@
-# simple chat app using socket.io
+# Simple chat app using Python Flask Socket.io and JS
 
 ## Install
 
