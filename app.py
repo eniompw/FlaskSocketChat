@@ -5,16 +5,8 @@ socketio = SocketIO(app)
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('index.html')
 
-@app.route('/send')
-def send():
-    return render_template('send.html')
-
-@socketio.on('send')
+@socketio.on('chat message')
 def send_msg(data):
-    emit('response', data, broadcast=True)
-
-# https://pythonprogramminglanguage.com/python-flask-websocket
-# https://flask-socketio.readthedocs.io/en/latest/getting_started.html#broadcasting
-# https://www.sitepoint.com/get-url-parameters-with-javascript
+    emit('chat message', data, broadcast=True)
