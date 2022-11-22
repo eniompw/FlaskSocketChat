@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, join_room, emit
 app = Flask(__name__)
 socketio = SocketIO(app)
 
@@ -7,6 +7,7 @@ socketio = SocketIO(app)
 def home():
     return render_template('index.html')
 
-@socketio.on('chat message')
-def send_msg(data):
-    emit('chat message', data, broadcast=True)
+@socketio.on('join')
+def on_join(data):
+    join_room(data['room'])
+    emit('chat message', data['msg'], to=data['room'])
