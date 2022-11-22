@@ -1,1 +1,3 @@
+Gunicorn
+Flask
 flask-socketio
