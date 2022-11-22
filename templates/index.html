@@ -1,6 +1,7 @@
 <p id="messages"></p>
 <form id="form" action="">
-  <input id="input" autocomplete="off" /><button>Send</button>
+  <input id="room" placeholder="room" autocomplete="off" /><br>
+  <input id="input" placeholder="message" autocomplete="off" /><button>Send</button>
 </form>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
@@ -13,7 +14,8 @@
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     if (input.value) {
-      socket.emit('chat message', input.value);
+      let data = {room:room.value, msg:input.value};
+      socket.emit('join', data);
       input.value = '';
     }
   });
